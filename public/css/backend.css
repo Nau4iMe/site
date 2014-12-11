@@ -1,0 +1,85 @@
+/*
+    Document   : backend.css
+    Created at : 8-March-2014, 20:21:10
+    Author     : Ava
+    NAUCHI.ME
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu&subset=latin,cyrillic-ext);
+body { font: 14px/1.2 'Ubuntu', sans-serif; margin-top: 10px }
+
+#main { margin-top: 30px }
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  text-align: center;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-category {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.form-ban {
+    max-width: 75%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form-ban #results {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+nav ul ul {
+    display: none; 
+    padding: 0;
+    position: absolute;
+    z-index: 2;
+    top: 35px;
+}
+nav ul li:hover > ul { display: block; }
+nav ul ul li { float: none; list-style: none }
+nav ul ul li a { 
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 3px #eee;
+    display: block; padding: 15px; min-height: 40px; text-align: center; background: #eee
+}
+nav ul ul li a:hover { text-decoration: none; }
+
+.file-upload { margin-top: 5px; margin-bottom: 2px }
+.file-upload .file-info { display: inline-block; margin-right: 10px; text-decoration: underline; }
+.progress-bar {
+    background-color: #41C813; height: 5px; width: 0;
+    -webkit-transition: width 1s ease;
+    transition: width 1s ease;
+}
