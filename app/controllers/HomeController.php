@@ -169,20 +169,8 @@ class HomeController extends BaseController {
         $this->data['active'] = 'sitemap';
         $this->data['page_title'] = 'Карта на сайта';
 
-        $nodes = Category::select('id', 'title', 'path', '_lft', 'parent_id')->withoutRoot()->withDepth()->get();
-        $this->data['html'] = null;
-        foreach ($nodes as $v) {
-            $this->data['html'] .= '<div class="level' . $v->depth . '">';
-            $this->data['html'] .= '<h3><i class="fa fa-sitemap"></i> '
-                . HTML::page_or_link($v->path, $v->title) . '</h3>';
-            foreach ($v->contents as $c) {
-                $this->data['html'] .= '<p><i class="fa fa-share-square"></i>  '
-                    . HTML::link_to_content(
-                        array('id' => $c->id, 'title' => $c->title, 'slug' => $c->slug, 'path' => $v->path)
-                    ) . '</p>';
-            }
-            $this->data['html'] .= '</div>';
-        }
+        $this->data['nodes'] = Category::select('id', 'title', 'path', '_lft', 'parent_id')
+            ->withoutRoot()->withDepth()->get();
 
         return View::make('home.sitemap', $this->data);
     }
