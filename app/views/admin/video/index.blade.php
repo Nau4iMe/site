@@ -6,8 +6,9 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th></th>
-                <th></th>
+                <th>видео</th>
+                <th>урок</th>
+                <th>добавил</th>
                 <th width="5%"></th>
                 <th width="5%"></th>
             </tr>
@@ -15,18 +16,19 @@
     @foreach($videos as $video)
         <tr>
             <td>
-                <a href="{{ URL::route('admin.video.' .
-                    (!Session::get('is_admin') ? 'user.' : null) .
-                'show', $video->id) }}" >{{ $video->name }}</a>
+                <a href="{{ URL::route('admin.video.user.show', $video->id) }}" >{{ $video->name }}</a>
+            </td>
+            <td>
+                <a href="{{ URL::route('admin.content.user.edit', $video->content_id) }}">
+                    {{ $video->title }}
+                </a>
             </td>
             <td>{{ $video->member_name }}</td>
-            <td><a href="{{ URL::route('admin.video.' .
-                    (!Session::get('is_admin') ? 'user.' : null) .
-                'show', $video->id) }}" class="btn btn-info">преглед</a></td>
             <td>
-                {{ Form::open(array('route' => array('admin.video.' .
-                        (!Session::get('is_admin') ? 'user.' : null)
-                    . 'destroy', $video->id), 'method' => 'delete')) }}
+                <a href="{{ URL::route('admin.video.user.show', $video->id) }}" class="btn btn-info">преглед</a>
+            </td>
+            <td>
+                {{ Form::open(array('route' => array('admin.video.user.destroy', $video->id), 'method' => 'delete')) }}
                 {{ Form::submit('изтрий', array('class' => 'btn btn-danger')) }}
                 {{ Form::close() }}
             </td>

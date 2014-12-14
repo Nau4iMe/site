@@ -2,13 +2,13 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset="utf-8">
-    <title>{{ $page_title }} - Научи ме!</title>
+    <title>{{ isset($page_title) ? $page_title : null }} - Научи ме!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ URL::asset('favicon.ico') }}" rel="shortcut icon" type="image/vnd.microsoft.icon" >
 
-    <meta property="og:title" content="{{ $page_title }}" />
+    <meta property="og:title" content="{{ isset($page_title) ? $page_title : null }}" />
     <meta property="og:url" content="{{ Request::url() }}" />
-    <meta property="og:image" content="{{ $page_image }}" />
+    <meta property="og:image" content="{{ isset($page_image) ? $page_image : null }}" />
 @if (isset($videos))
 @foreach($videos as $video)
     <meta property="og:type" content="video.other" >

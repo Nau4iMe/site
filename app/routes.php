@@ -37,6 +37,7 @@ Route::group(array('namespace' => 'admin'), function() {
 
         /* Users who have enough posts to use additional features */
         Route::group(array('before' => 'has-enough-posts|ban'), function() {
+            Route::get('admin/content', array('as' => 'admin.content.search', 'uses' => 'ContentController@search'));
             Route::get('admin/content/user/create', array('as' => 'admin.content.user.create', 'uses' => 'ContentController@create'));
             Route::post('admin/content/store', array('as' => 'admin.content.store', 'uses' => 'ContentController@store'));
             Route::get('admin/content/user/index', array('as' => 'admin.content.user.index', 'uses' => 'ContentController@index'));
@@ -80,16 +81,16 @@ Route::group(array('before' => 'csrf'), function() {
 
 // These routes must be at the very bottom
 Route::get('/{path}/{content}', array('as' => 'content', 'uses' => 'HomeController@content'))
-            ->where(array('path' => '(.+)', 'content' => '[0-9]+\-(.+)-t')); //[a-zA-Z0-9\-/]+
+            ->where(array('path' => '(.+)', 'content' => '[0-9]+\/(.+)'));
 Route::get('/{path}', array('as' => 'page', 'uses' => 'HomeController@page'))
             ->where(array('path' => '(.+)'));
 /* END OF ROUTES */
 
 /* DEBUG */
 Event::listen('illuminate.query', function($query, $bindings, $time, $name) {
-    //echo $query . '<br><hr><br>';          // select * from my_table where id=? 
-    //print_r($bindings); // Array ( [0] => 4 )
-    //echo $time;         // 0.58 
+    // echo $query . '<br><hr><br>';          // select * from my_table where id=?
+    // print_r($bindings); // Array ( [0] => 4 )
+    // echo $time;         // 0.58
 });
 
 App::missing(function($exception) {

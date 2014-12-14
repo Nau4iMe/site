@@ -205,7 +205,7 @@ class HomeController extends BaseController {
 
         $find = Input::get('find');
 
-        $this->data['result'] = Content::userSearch($find);
+        $this->data['result'] = Content::search($find);
         $this->data['result']->appends(array('find' => $find))->links();
 
         // Prepare data intended to go within the head tags

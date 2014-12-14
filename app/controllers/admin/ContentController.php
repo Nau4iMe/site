@@ -216,4 +216,18 @@ class ContentController extends \BaseController {
         $upload->handleFiles($temp_dir, (int)$content);
     }
 
+    public function search()
+    {
+        $sanitize = new Sanitizer(Input::only('find'));
+        Input::merge($sanitize->get());
+        $find = Input::get('find');
+
+        $created_by = Session::get('is_admin') === false ? Auth::user()->id_member : false;
+
+        $this->data['contents'] = Content::search($find, array('created_by' => $created_by));
+        $this->data['contents']->appends(array('find' => $find))->links();
+
+        return View::make('admin.content.index', $this->data);
+    }
+
 }

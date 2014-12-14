@@ -64,33 +64,67 @@ class Content extends Eloquent implements SluggableInterface {
     /**
     * Search
     */
-    public static function userSearch($what, $limit = 20)
+    public static function search($what, $options = array('state' => 1, 'created_by' => false))
     {
-        $term = explode(' ', $what);
+        $terms = explode(' ', $what);
 
-        $query = Content::select('content.id', 'content.title', 'content.slug', 'introtext', 'catid', 'created_by', 'created_by_alias', 'content.hits', 'content.created_at', 'categories.path');
-        $query->where('state', 1)->where('content.title', 'LIKE', "%$what%");
-        foreach ($term as $v) {
-            $query->orWhere('content.title', 'LIKE', "%$v%");
-            $query->orWhere('introtext', 'LIKE', "%$v%");
-            $query->orWhere('fullcontent', 'LIKE', "%$v%");
+        $query = Content::select(
+            'content.id',
+            'content.title',
+            'content.slug',
+            'introtext',
+            'catid',
+            'created_by',
+            'created_by_alias',
+            'content.hits',
+            'content.created_at',
+            'categories.path',
+            'state'
+        );
+
+        if (isset($options['state']) && $options['state'] == 1) {
+            $query->where('state', 1);
         }
-        return $query->join('categories', 'content.catid', '=', 'categories.id')->orderBy('id', 'desc')->paginate($limit);
+        if (isset($options['created_by']) && $options['created_by'] !== false) {
+            $query->where('created_by', $options['created_by']);
+        }
+        $query->whereNested(function($query) use ($terms) {
+            foreach ($terms as $term) {
+                if (mb_strlen($term, 'UTF-8') > 1) {
+                    $query->orWhere('content.title', 'LIKE', "%$term%");
+                    $query->orWhere('content.introtext', 'LIKE', "%$term%");
+                    $query->orWhere('content.fullcontent', 'LIKE', "%$term%");
+                }
+            }
+        });
+        return $query->join('categories', 'content.catid', '=', 'categories.id')
+            ->orderBy('id', 'desc')
+            ->paginate(20);
     }
 
     /** 
     * Search using FULLTEXT index 
     * @uses MySQL v5.6+
     */
-    // public static function userSearch($what, $limit = 20)
+    // public static function search($what, $options = array('state' => 1, 'created_by' => false)
     // {
-    //  return Content::select('content.id', 'content.title', 'content.slug', 'introtext', 'catid', 'created_by', 'created_by_alias', 'content.hits', 'content.created_at', 'categories.path')
-    //      ->whereRaw(
-    //          "MATCH(`content`.`title`,`introtext`,`fullcontent`) AGAINST(? IN BOOLEAN MODE)",
-    //          array($what))
-    //      ->join('categories', 'content.catid', '=', 'categories.id')
-    //      ->orderBy('id', 'desc')
-    //      ->where('state', 1)->paginate($limit);
+    //     return Content::select('content.id',
+    //             'content.title',
+    //             'content.slug',
+    //             'introtext',
+    //             'catid',
+    //             'created_by',
+    //             'created_by_alias',
+    //             'content.hits',
+    //             'content.created_at',
+    //             'categories.path',
+    //             'state'
+    //         )->whereRaw(
+    //             "MATCH(`content`.`title`,`introtext`,`fullcontent`) AGAINST(? IN BOOLEAN MODE)",
+    //             array($what)
+    //         )->join('categories', 'content.catid', '=', 'categories.id')
+    //         ->orderBy('id', 'desc')
+    //         ->where('state', 1)->paginate(20);
     // }
 
 }

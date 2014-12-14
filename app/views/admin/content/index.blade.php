@@ -1,7 +1,20 @@
 @extends('layouts.admin.auth')
 
 @section('content')
-<a class="btn btn-success" href="{{ URL::route('admin.content.user.create') }}">Добавяне на нов урок</a>
+
+<div class="col-md-2">
+    <a class="btn btn-success" href="{{ URL::route('admin.content.user.create') }}">Добавяне на нов урок</a>
+</div>
+
+{{ Form::open(array('route' => 'admin.content.search', 'method' => 'get')) }}
+<div class="col-md-9">
+    {{ Form::text('find', null, array('class' => 'form-control', 'placeholder' => 'търси')) }}
+</div>
+<div class="col-md-1">
+    {{ Form::submit('търси', array('class' => 'btn btn-primary')) }}
+</div>
+{{ Form::close() }}
+<div class="clearfix"></div>
 
 @if(count($contents) > 0)
 <table class="table table-hover">
@@ -15,16 +28,15 @@
     @foreach($contents as $content)
     <tr class="{{ ($content->state == 0 ? 'list-group-item-danger' : null) }}">
         <td>
-            <a href="{{ URL::to('admin/content/' . (Session::get('is_admin') === false ? 'user/' : null)
-                                . $content->id . '/edit') }}">
-                {{ $content->title }}
+            <a href="{{ URL::route('admin.content' .
+                    (Session::get('is_admin') === false ? '.user' : null) .
+                '.edit', $content->id) }}">{{ $content->title }}
             </a>
         </td>
         <td>
-            <a class="btn btn-info" href="{{ URL::to(
-                'admin/content/'. (Session::get('is_admin') === false ? 'user/' : null) . $content->id . '/edit'
-            ) }}">
-                промени
+            <a class="btn btn-info" href="{{ URL::route('admin.content' .
+                    (Session::get('is_admin') === false ? '.user' : null) .
+                '.edit', $content->id) }}">промени
             </a>
         </td>
         <td>
