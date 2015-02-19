@@ -19,7 +19,7 @@ class Category extends \Kalnoy\Nestedset\Node implements SluggableInterface {
     private $rules = array(
         'title'     => 'required|min:2|max:255|alpha_num_spaces',
         'parent_id' => 'required|min:1|integer',
-        'path'      => 'max:255|',
+        'path'      => 'max:255|unique:categories',
         'is_link'   => 'max:1|integer',
         'type'      => 'required|min:1|max:255',
     );

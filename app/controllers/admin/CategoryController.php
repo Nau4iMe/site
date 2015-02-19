@@ -63,7 +63,7 @@ class CategoryController extends \BaseController {
             } else {
                 // Or should it be a link to an internal page?
                 $path = Category::setPath($validation->parent_id);
-                $validation->path = (strlen($path) ? $path . '/' : null ) . $validation->slug;
+                $validation->path = (strlen($path) ? $path . '/' : null ) . Category::slug($validation->slug);
             }
 
             if ($this->saveSafely($validation)) {
@@ -108,6 +108,7 @@ class CategoryController extends \BaseController {
         if ($category->validate(Input::except('path'))) {
             // Preparing the data to be submitted
             $data = Input::all();
+            $data['is_link'] = Input::get('is_link');
             $category->update($data);
 
             if (Input::get('is_link') == 1 && strlen(Input::get('path')) > 2) {
@@ -117,6 +118,14 @@ class CategoryController extends \BaseController {
                 // Or should it be a link to an internal page?
                 $path = Category::setPath($category->parent_id);
                 $category->path = (strlen($path) ? $path . '/' : null ) . Category::slug(Input::get('title'));
+
+                // Ugly workaround for dirty validation of path :(
+                $exists = Category::select('path')
+                    ->where('path', $category->path)->where('id', '<>', $id)
+                    ->count();
+                if ($exists === 1) {
+                    return Redirect::route('admin.category.edit', $id)->withErrors(array('title' => 'Полето цял път вече съществува'));
+                }
             }
 
             // Should everything be ok, save it.

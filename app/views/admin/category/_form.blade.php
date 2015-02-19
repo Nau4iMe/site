@@ -29,6 +29,9 @@
 </div>
 
 <div class="form-group" {{ (isset($category->is_link) && $category->is_link == 1) ? null : 'style="display: none"' }} id="display_path">
+    <div class="alert alert-warning">
+        Моля, имайте предвид че ако изберете тази отметка, името което въведете няма да бъде
+        проверявано за уникалност и може да се получи дублиране на линковете и неочаквани резултати.</div>
     <label for="path">Цял път: </label>
     {{ Form::text('path', null, array('id' => 'path', 'class' => 'form-control')) }}
 
