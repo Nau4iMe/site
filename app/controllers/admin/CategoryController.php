@@ -116,7 +116,7 @@ class CategoryController extends \BaseController {
             } else {
                 // Or should it be a link to an internal page?
                 $path = Category::setPath($category->parent_id);
-                $category->path = (strlen($path) ? $path . '/' : null ) . $category->slug;
+                $category->path = (strlen($path) ? $path . '/' : null ) . Category::slug(Input::get('title'));
             }
 
             // Should everything be ok, save it.
