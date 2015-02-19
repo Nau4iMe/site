@@ -19,6 +19,7 @@ return array(
     "alpha"            => "Полето :attribute трябва да съдържа само букви.",
     "alpha_dash"       => "Полето :attribute трябва да съдържа само букви, цифри, долна черта и тире.",
     "alpha_num"        => "Полето :attribute трябва да съдържа само букви и цифри.",
+    "alpha_num_spaces" => "Полето :attribute трябва да съдържа само букви и цифри.",
     "array"            => "Полето :attribute трябва да бъде масив.",
     "before"           => "Полето :attribute трябва да бъде дата преди :date.",
     "between"          => array(

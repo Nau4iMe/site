@@ -17,13 +17,13 @@ class Content extends Eloquent implements SluggableInterface {
     );
 
     private $rules = array(
-        'title'             =>  'required|between:1,255|alpha_dash|alpha_num',
+        'title'             =>  'required|between:1,255|alpha_num_spaces',
         'catid'             =>  'required|integer|min:1',
         'introtext'         =>  'required|min:1',
         'fullcontent'       =>  'required|min:1',
         'state'             =>  'integer',
         'created_by'        =>  'integer|min:1',
-        'created_by_alias'  =>  'between:1,255|alpha_dash|alpha_num'
+        'created_by_alias'  =>  'between:1,255|alpha_num_spaces'
     );
 
     public function rating()

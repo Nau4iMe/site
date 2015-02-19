@@ -43,25 +43,14 @@ HTML::macro('flowplayer', function($text) {
  *
  * @return string
  */
-HTML::macro('video', function($url) {
-    $data = null;
-    $data .= '<div class="flowplayer-holder">';
-    $data .= '<div class="flowplayer" data-swf="';
-    $data .= URL::asset('packages/flowplayer-5.4.6/flowplayer.swf');
-    $data .= '" data-ratio="0.8">';
-    $data .= '<video>' . PHP_EOL;
-    // fix for flash videos
-    if (mb_substr($url, -3, 3) == 'flv') {
-        $data .= '<source type="video/flash" src="' . $url . '">' . PHP_EOL;
-    } else {
-        $data .= '<source type="video/webm" src="' . $url . '">' . PHP_EOL;
-        $data .= '<source type="video/mp4" src="' . $url . '">' . PHP_EOL;
-        $data .= '<source type="video/ogv" src="' . $url . '">' . PHP_EOL;
-    }
-    $data .= '</video>' . PHP_EOL;
+HTML::macro('video', function($id) {
+    $data = '<div class="player-holder">';
+    $data .= '<div class="embed-responsive embed-responsive-16by9">';
+    $data .= '<iframe type="text/html" class="embed-responsive-item" autoplay="false"
+            src="http://www.youtube.com/embed/' . $id . '">
+        </iframe>';
     $data .= '</div>';
     $data .= '</div>';
-
     return $data;
 });
 

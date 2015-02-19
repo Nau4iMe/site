@@ -15,6 +15,6 @@
 {{ Form::submit('изтрий това видео', array('class' => 'btn btn-danger')) }}
 {{ Form::close() }}
 <div class="alert alert-info">
-    {{ HTML::video($video->name) }}
+    {{ HTML::video($video->youtube) }}
 </div>
 @stop

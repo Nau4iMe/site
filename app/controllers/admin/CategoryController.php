@@ -133,7 +133,6 @@ class CategoryController extends \BaseController {
                     ->with('global_success', 'Данните бяха променени успешно.');
             }
         }
-        dd($category->getErrors());
         return Redirect::route('admin.category.edit', $id)->withErrors($category->getErrors());
     }
 

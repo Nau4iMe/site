@@ -17,7 +17,7 @@ class Category extends \Kalnoy\Nestedset\Node implements SluggableInterface {
     );
 
     private $rules = array(
-        'title'     => 'required|min:2|max:255|alpha_dash|alpha_num',
+        'title'     => 'required|min:2|max:255|alpha_num_spaces',
         'parent_id' => 'required|min:1|integer',
         'path'      => 'max:255|',
         'is_link'   => 'max:1|integer',
@@ -123,10 +123,10 @@ class Category extends \Kalnoy\Nestedset\Node implements SluggableInterface {
     */
     public static function slug($title, $separator = '-')
     {
-        if (mb_strlen($title) > 240) {
+        if (mb_strlen($title, 'utf-8') > 240) {
             $title = mb_substr($title, 0, 240, 'utf-8');
         }
-        $title = preg_replace('![^'.preg_quote($separator).'\pL\pN\s]+!u', '', mb_strtolower($title));
+        $title = preg_replace('![^'.preg_quote($separator).'\pL\pN\s]+!u', '', mb_strtolower($title, 'utf-8'));
         $flip = $separator == '-' ? '_' : '-';
         $title = preg_replace('!['.preg_quote($flip).']+!u', $separator, $title);
         $title = preg_replace('!['.preg_quote($separator).'\s]+!u', $separator, $title);

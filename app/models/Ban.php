@@ -8,7 +8,7 @@ class Ban extends Eloquent {
 
     private $rules = array(
         'user_id'   => 'required|integer|min:1',
-        'reason'    => 'required|min:2|max:255|alpha_dash|alpha_num',
+        'reason'    => 'required|min:2|max:255|alpha_num_spaces',
     );
 
 }

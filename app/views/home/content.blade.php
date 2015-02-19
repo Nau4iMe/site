@@ -76,7 +76,7 @@
 {{ HTML::flowplayer(stripslashes(htmlspecialchars_decode($content->fullcontent))) }}
 
 @foreach($videos as $video)
-    {{ HTML::video($video->name) }}
+    {{ HTML::video($video->youtube) }}
 @endforeach
 
 @stop

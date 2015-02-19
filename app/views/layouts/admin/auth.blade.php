@@ -15,7 +15,7 @@
 
     <script type="text/javascript" src="{{ URL::asset('js/jquery-2.1.0.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/backend.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('packages/ckeditor/ckeditor.js') }}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
