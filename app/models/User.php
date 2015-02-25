@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 
 class User extends Eloquent implements UserInterface {
 
-    public static $enough_posts = 0;
+    public static $enough_posts = 100000;
 
     public $timestamps = false;
 

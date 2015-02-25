@@ -52,7 +52,7 @@ class CategoryController extends \BaseController {
         Input::merge($sanitize->get());
 
         $validation = new Category();
-        if ($validation->validate(Input::all())) {
+        if ($validation->validate(Input::except('path'))) {
 
             $validation->fill(Input::except('path'));
             $validation->save();

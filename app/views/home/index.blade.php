@@ -13,14 +13,15 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h2 class="panel-title text-capitalize">
-                {{ HTML::link_to_content(array('path' => $v->path, 'id' => $v->id,
-                                                'title' => $v->title, 'slug' => $v->slug)) }}
+                {{ HTML::link_to_content(array(
+                    'path' => $v->path, 'id' => $v->id, 'title' => $v->title, 'slug' => $v->slug
+                )) }}
             </h2>
         </div>
         <div class="panel-body">
             <dl class="dl-horizontal">
                 <dt>добавен:</dt>
-                <dd>{{ $v->created_at }}</dd>
+                <dd>{{ $v->created_at->toDateString() }}</dd>
 
                 <dt>прегледи:</dt>
                 <dd>{{ $v->hits }}</dd>
@@ -30,9 +31,12 @@
             </dl>
             <p>{{ strip_tags(stripslashes(htmlspecialchars_decode($v->introtext))) }}</p>
 
-        {{ HTML::link_to_content(array('path' => $v->path, 'id' => $v->id,
-                'title' => 'към урока <i class="fa fa-graduation-cap"></i>',
-                'slug' => $v->slug, 'class' => 'btn btn-default btn-lg btn-block', 'atitle' => $v->title)) }}
+        {{ HTML::link_to_content(array(
+            'path' => $v->path,
+            'id' => $v->id,
+            'title' => 'към урока <i class="fa fa-graduation-cap"></i>',
+            'slug' => $v->slug, 'class' => 'btn btn-default btn-lg btn-block', 'atitle' => $v->title
+        )) }}
         </div>
     </div>
 </div>

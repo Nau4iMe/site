@@ -136,6 +136,7 @@ class ContentController extends \BaseController {
         
         if ($content->validate(Input::all())) {
             $data = Input::all();
+            $data['slug'] = Category::slug(Input::get('slug'));
             $content->update($data);
             return Redirect::route('admin.content.' . (Session::get('is_admin') === false ? 'user.' : null) . 'index')
                ->with('global_success', 'Данните бяха променени успешно.');

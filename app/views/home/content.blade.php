@@ -11,8 +11,9 @@
     </li>
     @endforeach
     <li>
-        {{ HTML::link_to_content(array('id' => $content->id, 'title' => $content->title,
-            'slug' => $content->slug, 'path' => $v->path)) }}
+        {{ HTML::link_to_content(array(
+            'id' => $content->id, 'title' => $content->title, 'slug' => $content->slug, 'path' => $v->path
+        )) }}
     </li>
 @endif
 </ol>
