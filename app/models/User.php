@@ -14,7 +14,7 @@ class User extends Eloquent implements UserInterface {
      *
      * @var string
      */
-    protected $table = 'smf_members';
+    protected $table = 'smfone_members';
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -23,13 +23,18 @@ class User extends Eloquent implements UserInterface {
      */
     protected $hidden = array('password');
 
+    public static function getUsersTable()
+    {
+        return 'smfone_members';
+    }
+
     /**
     * Grants access to the API of Simple Machines Forum
     * @return string
     */
     public static function getSmfApiPath()
     {
-        return public_path() . '/forum/api/smf_2_api.php';
+        return public_path() . '/forum/smf_2_api.php';
     }
 
     public static function getUserParam($user, $param)

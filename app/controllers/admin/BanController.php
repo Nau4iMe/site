@@ -18,7 +18,7 @@ class BanController extends \BaseController {
 
     public function index()
     {
-        $this->data['bans'] = Ban::leftJoin('smf_members as u', 'u.id_member', '=', 'ban.user_id')
+        $this->data['bans'] = Ban::leftJoin(User::getUsersTable() . ' as u', 'u.id_member', '=', 'ban.user_id')
             ->paginate(20, array('ban.id', 'ban.reason', 'u.member_name'));
 
         return View::make('admin.ban.index', $this->data);

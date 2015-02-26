@@ -12,6 +12,7 @@ use Input;
 use Content;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Response;
+use User;
 
 class VideoController extends \BaseController {
 
@@ -23,27 +24,29 @@ class VideoController extends \BaseController {
 
     public function index()
     {
+        $user_table = User::getUsersTable();
+
         if (Session::get('is_admin')) {
             $this->data['videos'] = Video::select(
                 'videos.id',
                 'videos.name',
-                'smf_members.member_name',
+                $user_table . '.member_name',
                 'content.id as content_id',
                 'content.title'
-            )->leftJoin('smf_members', 'smf_members.id_member', '=', 'videos.user_id')
+            )->leftJoin($user_table,  $user_table . '.id_member', '=', 'videos.user_id')
             ->leftJoin('content', 'content.id', '=', 'videos.content_id')
-            ->orderBy('videos.id', 'desc')->paginate(20, array('videos.id', 'videos.name', 'smf_members.member_name'));
+            ->orderBy('videos.id', 'desc')->paginate(20, array('videos.id', 'videos.name', $user_table . '.member_name'));
         } else {
             $this->data['videos'] = Video::select(
                 'videos.id',
                 'videos.name',
-                'smf_members.member_name',
+                $user_table . '.member_name',
                 'content.id as content_id',
                 'content.title'
-            )->leftJoin('smf_members', 'smf_members.id_member', '=', 'videos.user_id')
+            )->leftJoin($user_table,  $user_table . '.id_member', '=', 'videos.user_id')
             ->leftJoin('content', 'content.id', '=', 'videos.content_id')
             ->where('videos.user_id', Auth::user()->id_member)
-            ->orderBy('videos.id', 'desc')->paginate(20, array('videos.id', 'videos.name', 'smf_members.member_name'));
+            ->orderBy('videos.id', 'desc')->paginate(20, array('videos.id', 'videos.name', $user_table . '.member_name'));
         }
         return View::make('admin.video.index', $this->data);
     }

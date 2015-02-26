@@ -84,7 +84,7 @@ Route::filter('admin', function() {
 */
 
 Route::filter('has-enough-posts', function() {
-    if (User::getUserParam(Auth::User()->id_member, 'posts') < User::$enough_posts)
+    if (!Session::get('is_admin') && (User::getUserParam(Auth::User()->id_member, 'posts') < User::$enough_posts))
         return Redirect::route('admin')->with('global_error', 'Нямате достатъчно постове!');
 });
 

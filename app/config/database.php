@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => '127.0.0.1',
-			'database'  => 'nau4i',
+			'database'  => 'nau4i.me',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
