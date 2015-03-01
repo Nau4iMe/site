@@ -177,7 +177,7 @@ class HomeController extends BaseController {
         {
             // add item to the sitemap (url, date, priority, freq)
             $sitemap->add(URL::to('/'), \Carbon\Carbon::now()->toRfc2822String(), '1.0', 'weekly');
-            $sitemap->add(URL::to('forum'), '2012-08-26T12:30:00+02:00', '1.0', 'hourly');
+            $sitemap->add(URL::to('forum'), \Carbon\Carbon::now()->toRfc2822String(), '1.0', 'hourly');
 
             $contents = Content::select('content.id', 'content.slug', 'categories.path')
                 ->join('categories', 'content.catid', '=', 'categories.id')
