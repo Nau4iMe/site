@@ -67,7 +67,7 @@
                                 'class' => 'navbar-form navbar-left')
                             ) }}
                             <div id="main-search" class="form-group">
-                                <input autocomplete="off" type="text" name="find" placeholder="&#xF002 търси" required="required" class="form-control" id="main-search-input">
+                                <input autocomplete="off" type="text" name="find" placeholder="&#xF002; търси" required="required" class="form-control" id="main-search-input">
                             </div>
                             {{ Form::close() }}
                             </li>
