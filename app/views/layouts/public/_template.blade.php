@@ -21,6 +21,7 @@
                                     ? trim($page_keywords, ', ')
                                     : 'php, ООП, mvc, mysql, sql, nosql, javascript, ajax, jquery, linux' }}">
     <meta name="description" content="{{ !empty($page_desc) ? $page_desc : 'Нау4и.ме - Видео уроци на български.' }}">
+    <meta name="robots" content="index, follow">
 
     <!-- Cascase Style Sheets -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
