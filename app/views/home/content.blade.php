@@ -18,7 +18,11 @@
 @endif
 </ol>
 
-<h1><a href="">{{ $content->title }}</a></h1>
+<h1><a href="" title="{{ $content->title }}">{{ $content->title }}</a></h1>
+
+@if(Session::get('is_admin'))
+<a href="{{ URL::route('admin.content.edit', $content->id) }}" title="промени" class="fa fa fa-pencil-square-o" target="_blank"></a>
+@endif
 
 <hr />
 
