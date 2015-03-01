@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>{{ isset($page_title) ? $page_title : null }} - Научи ме!</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=0">
     <link href="{{ URL::asset('favicon.ico') }}" rel="shortcut icon" type="image/vnd.microsoft.icon" >
 
     <meta property="og:title" content="{{ isset($page_title) ? $page_title : null }}" />
-    <meta property="og:url" content="{{ Request::url() }}" />
+    <meta property="og:url" content="{{ urldecode(Request::url()) }}" />
     <meta property="og:image" content="{{ isset($page_image) ? $page_image : null }}" />
 @if (isset($videos))
 @foreach($videos as $video)
