@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'Europe/Sofia',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -108,7 +108,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Cviebrock\EloquentSluggable\SluggableServiceProvider',
-
+		'Roumen\Sitemap\SitemapServiceProvider',
 
 	),
 

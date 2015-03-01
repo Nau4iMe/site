@@ -166,13 +166,35 @@ class HomeController extends BaseController {
     */
     public function siteMap()
     {
-        $this->data['active'] = 'sitemap';
-        $this->data['page_title'] = 'Карта на сайта';
+        $sitemap = App::make('sitemap');
 
-        $this->data['nodes'] = Category::select('id', 'title', 'path', '_lft', 'parent_id')
-            ->withoutRoot()->withDepth()->get();
+        // set cache (key (string), duration in minutes (Carbon|Datetime|int), turn on/off (boolean))
+        // by default cache is disabled
+        // $sitemap->setCache('laravel.sitemap', 3600);
 
-        return View::make('home.sitemap', $this->data);
+        // check if there is cached sitemap and build new only if is not
+        if (!$sitemap->isCached())
+        {
+            // add item to the sitemap (url, date, priority, freq)
+            $sitemap->add(URL::to('/'), \Carbon\Carbon::now()->toRfc2822String(), '1.0', 'weekly');
+            $sitemap->add(URL::to('forum'), '2012-08-26T12:30:00+02:00', '1.0', 'hourly');
+
+            $contents = Content::select('content.id', 'content.slug', 'categories.path')
+                ->join('categories', 'content.catid', '=', 'categories.id')
+                ->orderBy('id', 'desc')
+                ->get();
+
+            foreach ($contents as $content) {
+                $sitemap->add(
+                    URL::to('/') . '/' . $content->path . '/' . $content->id . '/' . $content->slug . '/',
+                    null,
+                    '0.5',
+                    'weekly'
+                );
+            }
+        }
+
+        return $sitemap->render('xml');
     }
 
     public function about()

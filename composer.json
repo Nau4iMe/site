@@ -7,7 +7,8 @@
 		"laravel/framework": "4.1.*",
 		"kalnoy/nestedset": "1.0.*",
 		"way/generators": "~2.0",
-		"cviebrock/eloquent-sluggable": "2.*"
+		"cviebrock/eloquent-sluggable": "2.*",
+		"roumen/sitemap": "2.4.15"
 	},
 	"autoload": {
 		"classmap": [

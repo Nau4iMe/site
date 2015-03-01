@@ -83,9 +83,6 @@
                             </li>
                                 @endforeach
                             @endif
-                            <li {{ (isset($active) && $active == 'sitemap') ? 'class="active"' : null }}>
-                                <a href="{{ URL::route('sitemap') }}" title="карта на сайта">карта на сайта</a>
-                            </li>
                             @if (Auth::user())
                                 <li><a href="{{ URL::route('admin') }}" title="администрация">администрация</a></li>
                                 <li><a class="fa fa-user" href="{{ URL::to('/forum/index.php?action=profile') }}" title="SMF Профил"></a></li>
