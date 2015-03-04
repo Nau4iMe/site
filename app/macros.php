@@ -46,7 +46,7 @@ HTML::macro('flowplayer', function($text) {
 HTML::macro('video', function($id) {
     $data = '<div class="player-holder">';
     $data .= '<div class="embed-responsive embed-responsive-16by9">';
-    $data .= '<iframe type="text/html" class="embed-responsive-item" autoplay="false"
+    $data .= '<iframe type="text/html" class="embed-responsive-item" autoplay="false" allowfullscreen
             src="http://www.youtube.com/embed/' . $id . '">
         </iframe>';
     $data .= '</div>';
