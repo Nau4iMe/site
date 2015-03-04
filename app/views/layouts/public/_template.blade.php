@@ -85,7 +85,7 @@
                                 <a href="{{ URL::route('home') }}" title="начало">начало</a>
                             </li>
                             <li {{ (isset($active) && $active == 'about') ? 'class="active"' : null }}>
-                                <a href="{{ URL::route('about') }}" title="за нас">за нас</a>
+                                <a href="{{ urldecode(URL::route('about')) }}" title="за нас">за нас</a>
                             </li>
                             @if (isset($topmenu))
                                 @foreach ($topmenu as $v)
