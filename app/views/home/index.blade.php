@@ -1,10 +1,16 @@
 @extends('layouts.public.extendable')
 
 @section('content')
+<div class="alert alert-success">
+    <p><span class="fa fa-code-fork"></span>&nbsp;Сайтът е в процес на обновление.</p>
+    <p>Ако имате критика или забележки, намерите нещо нередно или пък имате препоръка, можете да се свържете с нас
+        <a href="http://nau4i.me/forum/index.php?action=post;board=32.0" target="_blank">във форума</a>.</p>
+</div>
 <div class="alert alert-info">
-    <p><i class="glyphicon glyphicon-pushpin"></i>&nbsp;Здравейте и добре дошли в Научи ме!</p>
+    <p><span class="glyphicon glyphicon-pushpin"></span>&nbsp;Здравейте и добре дошли в Научи ме!</p>
     <p>Тук ще намерите голям брой видео и текстови уроци. Главно, но не изцяло, на тема програмиране.</p>
-    <p>Имате въпрос, питане или просто не знаете колко е часа? Моля, обърнете се към в нашия <a href="http://nau4i.me/forum">форум</a>.</p>
+    <p>Имате въпрос, питане или просто не знаете колко е часа? Моля, обърнете се към в нашия
+        <a href="http://nau4i.me/forum">форум</a>.</p>
 </div>
 <?php $x = 0; ?>
 @foreach($contents as $v)
