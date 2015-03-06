@@ -30,8 +30,8 @@ class HomeController extends BaseController {
             'content.id', 'content.title', 'content.slug', 'introtext', 'catid', 'created_by', 'created_by_alias',
             'content.hits', 'content.created_at', 'categories.path')
             ->join('categories', 'content.catid', '=', 'categories.id')
-            ->orderBy('id', 'desc')
             ->where('state', 1)
+            ->orderBy('id', 'desc')
             ->paginate(10);
 
         // Prepare data intended to go within the head tags
@@ -50,7 +50,8 @@ class HomeController extends BaseController {
         // Attempting to find a category corresponding to the given path
         try {
             $this->data['category'] = Category::select('id', 'title', 'slug', 'path')
-                ->where('path', $path)->firstOrFail();
+                ->where('path', $path)
+                ->firstOrFail();
         } catch (Exception $e) {
             App::abort(404);
         }
@@ -69,7 +70,8 @@ class HomeController extends BaseController {
                 $this->data['by'] = 'desc';
             }
             $this->data['contents'] = Content::select('id', 'title', 'slug', 'hits', 'created_at', 'created_by_alias')
-                ->where('catid', $id)->where('state', 1)
+                ->where('catid', $id)
+                ->where('state', 1)
                 ->Order($this->data['order'], $this->data['by'])
                 ->paginate(40)
                 ->appends(Input::only('sort', 'by'));
@@ -181,6 +183,7 @@ class HomeController extends BaseController {
 
             $contents = Content::select('content.id', 'content.slug', 'categories.path')
                 ->join('categories', 'content.catid', '=', 'categories.id')
+                ->where('state', 1)
                 ->orderBy('id', 'desc')
                 ->get();
 
