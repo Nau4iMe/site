@@ -81,7 +81,7 @@ HTML::macro('link_to_content', function($data = array()) {
     $html = '<a href="';
     $html .= urldecode(URL::route('content', array($data['path'], $data['id'] . '/' . $data['slug'])));
     $html .= '"';
-    $html .= ' title ="' . (isset($data['atitle']) ? $data['atitle'] : $data['title']) . '" ';
+    $html .= ' title="' . (isset($data['atitle']) ? $data['atitle'] : $data['title']) . '" ';
     $html .= isset($data['class']) ? ' class="' . $data['class'] . '"' : null;
     $html .= '>' . $data['title'] . '</a>';
     return $html;
