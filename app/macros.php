@@ -47,7 +47,7 @@ HTML::macro('video', function($id) {
     $data = '<div class="player-holder">';
     $data .= '<div class="embed-responsive embed-responsive-16by9">';
     $data .= '<iframe type="text/html" class="embed-responsive-item" autoplay="false" allowfullscreen
-            src="http://www.youtube.com/embed/' . $id . '">
+            src="http://www.youtube.com/embed/' . $id . '?theme=light&hl=bg">
         </iframe>';
     $data .= '</div>';
     $data .= '</div>';
