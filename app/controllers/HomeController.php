@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Routing\Controllers\Controller;
+use Carbon\Carbon;
 
 class HomeController extends BaseController {
 
@@ -26,6 +27,16 @@ class HomeController extends BaseController {
     */
     public function home()
     {
+        // SMF Latest Topics Integration
+        if (file_exists(public_path() . '/forum/SSI.php')) {
+            require_once public_path() . '/forum/SSI.php';
+            $this->data['forum_latest'] = ssi_boardNews($board = null, $limit = 3, $start = null, $length = null, $output_method = 'array'); 
+
+            foreach ($this->data['forum_latest'] as $key => $post) {
+                $this->data['forum_latest'][$key]['time'] = new LocalizedCarbon($post['time']);
+            }
+        }
+
         $this->data['contents'] = Content::select(
             'content.id', 'content.title', 'content.slug', 'introtext', 'catid', 'created_by', 'created_by_alias',
             'content.hits', 'content.created_at', 'categories.path')
@@ -178,8 +189,8 @@ class HomeController extends BaseController {
         if (!$sitemap->isCached())
         {
             // add item to the sitemap (url, date, priority, freq)
-            $sitemap->add(URL::to('/'), \Carbon\Carbon::now()->toRfc2822String(), '1.0', 'weekly');
-            $sitemap->add(URL::to('forum'), \Carbon\Carbon::now()->toRfc2822String(), '1.0', 'hourly');
+            $sitemap->add(URL::to('/'), Carbon::now()->toRfc2822String(), '1.0', 'weekly');
+            $sitemap->add(URL::to('forum'), Carbon::now()->toRfc2822String(), '1.0', 'hourly');
 
             $contents = Content::select('content.id', 'content.slug', 'categories.path')
                 ->join('categories', 'content.catid', '=', 'categories.id')

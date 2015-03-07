@@ -65,6 +65,11 @@ nav ul li a:hover { box-shadow: 0px 0px 3px #999; }
 
 .pretty-radio:checked + label:before { content: "\f046"; color: #428BCA; } /* checked icon */
 .pretty-radio:checked + label:before { letter-spacing: 5px; } /* allow space for check mark */
+
+.forum-post-holder { border-bottom: 1px solid #ddd; }
+.forum-post-holder:last-child { border-bottom: none }
+.forum-post-body { margin: 10px 0; }
+
 /* End of Content styles */
 
 /* Sitemap */

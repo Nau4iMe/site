@@ -109,6 +109,7 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		'Cviebrock\EloquentSluggable\SluggableServiceProvider',
 		'Roumen\Sitemap\SitemapServiceProvider',
+		'Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider',
 
 	),
 
@@ -175,6 +176,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+		'LocalizedCarbon' => 'Laravelrus\LocalizedCarbon\LocalizedCarbon',
 
 	),
 

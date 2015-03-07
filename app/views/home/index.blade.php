@@ -12,6 +12,32 @@
     <p>Имате въпрос, питане или просто не знаете колко е часа? Моля, обърнете се към в нашия
         <a href="http://nau4i.me/forum">форум</a>.</p>
 </div>
+
+<div class="content-block col-md-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Последни теми от форума
+        </div>
+
+        @foreach ($forum_latest as $post)
+        <div class="panel-body forum-post-holder">
+            <h4><a href="{{ $post['href'] }}" target="_blank">{{ $post['subject'] }}</a></h4>
+            <p>
+                {{ $post['time']->diffForHumans() }} от
+                <a href="{{ $post['poster']['href'] }}" target="_blank"> {{ $post['poster']['name'] }}</a>
+            </p>
+            <div class="forum-post-body">{{ $post['body'] }}</div>
+            <a href="{{ $post['comment_href'] }}" target="_blank">
+                <span class="fa fa-comments"></span> {{ $post['replies'] }} коментари
+            </a> |
+            <a href="{{ $post['comment_href'] }}" target="_blank">
+                <span class="fa fa-reply"></span> напиши отговор
+            </a>
+        </div>
+        @endforeach
+    </div>
+</div>
+
 <?php $x = 0; ?>
 @foreach($contents as $v)
 <?php $x++; ?>
