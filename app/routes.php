@@ -74,6 +74,7 @@ Route::get('/', array('as' => 'home', 'uses' => 'HomeController@home'));
 Route::get('search', array('as' => 'search', 'uses' => 'HomeController@search'));
 Route::get('sitemap', array('as' => 'sitemap', 'uses' => 'HomeController@siteMap'));
 Route::get('за-нас', array('as' => 'about', 'uses' => 'HomeController@about'));
+Route::get('материали', array('as' => 'materials', 'uses' => 'HomeController@materials'));
 
 Route::group(array('before' => 'csrf'), function() {
     Route::post('content/rate/{content}', array('as' => 'content.rate', 'uses' => 'HomeController@rateContent'));

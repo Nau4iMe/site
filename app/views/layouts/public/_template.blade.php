@@ -87,6 +87,9 @@
                             <li {{ (isset($active) && $active == 'about') ? 'class="active"' : null }}>
                                 <a href="{{ urldecode(URL::route('about')) }}" title="за нас">за нас</a>
                             </li>
+                            <li {{ (isset($active) && $active == 'materials') ? 'class="active"' : null }}>
+                                <a href="{{ urldecode(URL::route('materials')) }}" title="материали">материали</a>
+                            </li>
                             @if (isset($topmenu))
                                 @foreach ($topmenu as $v)
                             <li {{ (isset($active) && $active == $v->id) ? 'class="active"' : null }}>

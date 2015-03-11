@@ -207,6 +207,13 @@ class HomeController extends BaseController {
         return View::make('home.about', $this->data);
     }
 
+    public function materials()
+    {
+        $this->data['active'] = 'materials';
+        $this->data['page_title'] = 'Материали';
+        return View::make('home.materials', $this->data);
+    }
+
     /**
     * search()
     * @return search results
