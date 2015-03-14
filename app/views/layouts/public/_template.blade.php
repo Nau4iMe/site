@@ -82,7 +82,10 @@
                             {{ Form::close() }}
                             </li>
                             <li {{ (isset($active) && $active == 'home') ? 'class="active"' : null }}>
-                                <a href="{{ URL::route('home') }}" title="начало">начало</a>
+                                <a href="{{ URL::to('/') }}" title="начало">начало</a>
+                            </li>
+                            <li>
+                                <a href="{{ URL::to('/') . '/forum'}}" title="форум" target="_blank">форум</a>
                             </li>
                             <li {{ (isset($active) && $active == 'about') ? 'class="active"' : null }}>
                                 <a href="{{ urldecode(URL::route('about')) }}" title="за нас">за нас</a>
