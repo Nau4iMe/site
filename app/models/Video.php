@@ -2,8 +2,14 @@
 
 class Video extends Eloquent {
 
+    use Validation;
+
     protected $table = 'videos';
     protected $allowed_extensions = array('mp4');
+
+    private $rules = array(
+        'youtube' => 'required|youtube',
+    );
 
     public function user()
     {

@@ -19,7 +19,7 @@ $(document).ready(function() {
             method: 'DELETE',
             url: element.attr('action')
         }).success(function(data) {
-            element.closest('tr').html(data);
+            element.closest('tr').html('<td colspan="3">'+data+'</td>');
         }).fail(function(error) {
             alert(error);
         });

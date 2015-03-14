@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="form-content">
-<!-- @include('admin.video._upload') -->
+@include('admin.video._upload')
 @include('admin.content._videos')
 {{ Form::model($content, array(
     'route' => array('admin.content.' . (Session::get('is_admin') === false ? 'user.' : null)

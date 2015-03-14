@@ -51,6 +51,20 @@ class VideoController extends \BaseController {
         return View::make('admin.video.index', $this->data);
     }
 
+    public function store($id)
+    {
+        $validation = new Video();
+        if ($validation->validate(Input::all())) {
+            $validation->user_id = Auth::user()->id_member;
+            $validation->youtube = Input::get('youtube');
+            $validation->content_id = (int) $id;
+            $validation->save();
+
+            return Redirect::back()->with('global_success', 'Видеото е добавено успешно.');
+        }
+        return Redirect::back()->with('global_error', 'Невалидно YouTube видео ID!');
+    }
+
     public function show($id)
     {
         $this->data['video'] = Video::FindOrFail($id);

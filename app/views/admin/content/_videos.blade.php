@@ -4,6 +4,7 @@
         <thead>
             <tr>
                 <th></th>
+                <th></th>
                 <th width="5%"></th>
             </tr>
         </thead>
@@ -12,6 +13,11 @@
             <td>
                 <a target="_blank" href="{{ URL::route('admin.video.user.show', $video->id) }}" >
                     {{ $video->name }}
+                </a>
+            </td>
+            <td>
+                <a target="_blank" href="{{ URL::route('admin.video.user.show', $video->id) }}" >
+                    {{ $video->youtube }}
                 </a>
             </td>
             <td>

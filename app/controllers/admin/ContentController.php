@@ -72,13 +72,11 @@ class ContentController extends \BaseController {
         if ($validation->validate(Input::all())) {
 
             $data = Input::except('slug');
+            $data['created_by'] = Auth::user()->id_member;
 
             if (Session::get('is_admin')) {
-                $data['created_by'] = 1337;
                 $data['created_by_alias'] = Input::get('created_by_alias');
-                $data['updated_by'] = Auth::user()->id_member;
             } else {
-                $data['created_by'] = Auth::user()->id_member;
                 $data['created_by_alias'] = Auth::user()->member_name;
             }
 

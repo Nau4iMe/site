@@ -48,6 +48,7 @@ Route::group(array('namespace' => 'admin'), function() {
                 ->where(array('content' => '[0-9]+'));
 
             Route::get('admin/video/user/index', array('as' => 'admin.video.user.index', 'uses' => 'VideoController@index'));
+            Route::post('admin/video/store/{id}', array('as' => 'admin.video.store', 'uses' => 'VideoController@store'));
             Route::get('admin/video/user/{video}', array('as' => 'admin.video.user.show', 'uses' => 'VideoController@show'));
             Route::delete('admin/video/user/{video}', array('as' => 'admin.video.user.destroy', 'uses' => 'VideoController@destroy'));
             Route::post('admin/video/user/get', array('as' => 'admin.video.user.get', 'uses' => 'VideoController@ajaxGetVideos'));
