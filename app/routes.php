@@ -82,10 +82,12 @@ Route::group(array('before' => 'csrf'), function() {
 });
 
 // These routes must be at the very bottom
+Route::get('/c/{id}', array('as' => 'redirect.content', 'uses' => 'RedirectController@content'))
+    ->where(array('id' => '[0-9]+'));
 Route::get('/{path}/{content}', array('as' => 'content', 'uses' => 'HomeController@content'))
-            ->where(array('path' => '(.+)', 'content' => '[0-9]+\/(.+)'));
+    ->where(array('path' => '(.+)', 'content' => '[0-9]+\/(.+)'));
 Route::get('/{path}', array('as' => 'page', 'uses' => 'HomeController@page'))
-            ->where(array('path' => '(.+)'));
+    ->where(array('path' => '(.+)'));
 /* END OF ROUTES */
 
 /* DEBUG */

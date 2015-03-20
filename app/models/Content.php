@@ -33,7 +33,7 @@ class Content extends Eloquent implements SluggableInterface {
 
     public function category()
     {
-        return $this->belongsTo('Category');
+        return $this->belongsTo('Category', 'catid');
     }
 
     public function videos()
