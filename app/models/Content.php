@@ -41,6 +41,16 @@ class Content extends Eloquent implements SluggableInterface {
         return $this->hasMany('Video');
     }
 
+    public function getForumId($id)
+    {
+        try {
+            $id = ContentForum::where('content_id', $id)->first()->id_msg;
+        } catch (Exception $e) {
+            $id = null;
+        }
+        return $id;
+    }
+
     /**
     * Scope handling the ORDER BY clauses
     */

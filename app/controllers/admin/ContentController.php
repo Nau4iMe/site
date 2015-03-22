@@ -16,6 +16,7 @@ use Response;
 use User;
 use Sanitizer;
 use Carbon\Carbon;
+use ContentForum;
 
 class ContentController extends \BaseController {
 
@@ -109,7 +110,7 @@ class ContentController extends \BaseController {
         $this->data['categories'] = Category::intendCategories(Category::getCategories());
         $this->data['route'] = 'edit';
         $this->data['content']['fullcontent'] = htmlspecialchars_decode($this->data['content']['fullcontent']);
-
+        $this->data['content']['id_msg'] = $this->data['content']->getForumId($this->data['content']['id']);
         return View::make('admin.content.edit', $this->data);
     }
 
@@ -227,6 +228,28 @@ class ContentController extends \BaseController {
         $this->data['contents']->appends(array('find' => $find))->links();
 
         return View::make('admin.content.index', $this->data);
+    }
+
+    public function content_forum($id)
+    {
+        try {
+            $content = Content::findOrFail($id);
+        } catch (Exception $e) {
+            App::abort(404);
+        }
+
+        $validation = new ContentForum();
+        if ($validation->validate(Input::all())) {
+            $validation->id_msg = Input::get('id_msg') ? Input::get('id_msg') : null;
+            $validation->content_id = $content->id;
+            try {
+                $validation->save();                
+            } catch (Exception $e) {
+                $validation->update(array('id_msg' => $validation->id_msg));
+            }
+            return Redirect::back()->with('global_success', 'Темата закачена успешно!');
+        }
+        return Redirect::back()->with('global_error', 'Грешка, моля опитайте отново!');
     }
 
 }

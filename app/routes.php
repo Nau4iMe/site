@@ -44,7 +44,9 @@ Route::group(array('namespace' => 'admin'), function() {
             Route::get('admin/content/user/{content}/edit/', array('as' => 'admin.content.user.edit', 'uses' => 'ContentController@edit'));
             Route::put('admin/content/user/{content}', array('as' => 'admin.content.user.update', 'uses' => 'ContentController@update'));
             Route::delete('admin/content/user/{content}', array('as' => 'admin.content.user.destroy', 'uses' => 'ContentController@destroy'));
-            Route::any('admin/content/video/{content}', array('as' => 'admin.content.video', 'uses' => 'ContentController@videoUpload'))
+            Route::post('admin/content/video/{content}', array('as' => 'admin.content.video', 'uses' => 'ContentController@videoUpload'))
+                ->where(array('content' => '[0-9]+'));
+            Route::post('admin/content/forum/{content}', array('as' => 'admin.content.forum', 'uses' => 'ContentController@content_forum'))
                 ->where(array('content' => '[0-9]+'));
 
             Route::get('admin/video/user/index', array('as' => 'admin.video.user.index', 'uses' => 'VideoController@index'));
