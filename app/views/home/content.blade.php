@@ -64,16 +64,26 @@
 </div>
 @endif
 
-<dl class="dl-horizontal">
-    <dt>добавен:</dt>
-    <dd>{{ $content->created_at }}</dd>
+<div class="col-md-7">
+    <dl class="dl-horizontal">
+        <dt>добавен:</dt>
+        <dd>{{ $content->created_at }}</dd>
 
-    <dt>прегледи:</dt>
-    <dd>{{ $content->hits }}</dd>
+        <dt>прегледи:</dt>
+        <dd>{{ $content->hits }}</dd>
 
-    <dt>автор:</dt> 
-    <dd><a href="#">{{ $content->created_by_alias }}</a></dd>
-</dl>
+        <dt>автор:</dt>
+        <dd><a href="#">{{ $content->created_by_alias }}</a></dd>
+    </dl>
+</div>
+
+@if ($topic_url)
+<div class="col-md-5">
+    <a href="{{ $topic_url }}" target="_blank" class="btn btn-success" title="{{ $content->title }}">Дискусия за урока във форума</a>
+</div>
+@endif
+
+<div class="clearfix"></div>
 
 <hr />
 

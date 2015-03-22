@@ -129,6 +129,12 @@ class HomeController extends BaseController {
         // Join videos
         $this->data['videos'] = $this->data['content']->videos;
 
+        // Display a link to the forum topic
+        $this->data['topic_url'] = null;
+        if ($id_msg = $this->data['content']->getForumId($this->data['content']->id)) {
+            $this->data['topic_url'] = URL::route('home') . '/forum/index.php/topic,' . $id_msg . '.0.html';
+        }
+
         // Additional information - the score of this content
         $this->data['content_rating'] = $this->data['content']->rating;
         if ($this->data['content_rating']) {
