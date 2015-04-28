@@ -8,7 +8,7 @@ class ContentForum extends Eloquent {
     protected $table = 'content_forum_pivot';
 
     private $rules = array(
-        'id_msg'  => 'integer|max:4294967295'
+        'id_msg'  => 'integer|required|between:1,4294967295'
     );
 
 }

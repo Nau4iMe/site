@@ -238,14 +238,19 @@ class ContentController extends \BaseController {
             App::abort(404);
         }
 
-        $validation = new ContentForum();
+        // Update existing or insert a new record?
+        $validation = ContentForum::where('content_id', $id)->first();
+        if ($validation === null) {
+            $validation = new ContentForum();
+        }
+
         if ($validation->validate(Input::all())) {
-            $validation->id_msg = Input::get('id_msg') ? Input::get('id_msg') : null;
+            $validation->id_msg = Input::get('id_msg');
             $validation->content_id = $content->id;
             try {
                 $validation->save();                
             } catch (Exception $e) {
-                $validation->update(array('id_msg' => $validation->id_msg));
+                return Redirect::back()->with('global_error', 'Грешка: ' . $e->getMessage());
             }
             return Redirect::back()->with('global_success', 'Темата закачена успешно!');
         }
