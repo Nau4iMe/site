@@ -13,6 +13,7 @@ use Content;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Response;
 use User;
+use Sanitizer;
 
 class VideoController extends \BaseController {
 
@@ -62,14 +63,34 @@ class VideoController extends \BaseController {
 
             return Redirect::back()->with('global_success', 'Видеото е добавено успешно.');
         }
-        return Redirect::back()->with('global_error', 'Невалидно YouTube видео ID!');
+        return Redirect::back()->withErrors('global_error', 'Невалидно YouTube видео ID!');
     }
 
-    public function show($id)
+    public function edit($id)
     {
         $this->data['video'] = Video::FindOrFail($id);
-        
-        return View::make('admin.video.show', $this->data);
+
+        return View::make('admin.video.edit', $this->data);
+    }
+
+    public function update($id)
+    {
+        try {
+            $video = Video::findOrFail($id);
+        } catch (Exception $e) {
+            App::abort(404);
+        }
+
+        $sanitize = new Sanitizer(Input::only('youtube', 'name'));
+        Input::merge($sanitize->get());
+
+        if ($video->validate(Input::only('youtube', 'name'))) {
+            if ($video->update(Input::only('youtube', 'name'))) {
+                return Redirect::back()->with('global_success', 'Видеото променено успешно!');
+            }
+        }
+
+        return Redirect::route('admin.video.edit', $id)->with('global_error', 'Грешка моля опитайте отново.');
     }
 
     public function destroy($id)

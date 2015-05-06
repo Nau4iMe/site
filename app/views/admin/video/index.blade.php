@@ -16,7 +16,7 @@
     @foreach($videos as $video)
         <tr>
             <td>
-                <a href="{{ URL::route('admin.video.user.show', $video->id) }}" >{{ $video->name }}</a>
+                <a href="{{ URL::route('admin.video.edit', $video->id) }}" >{{ $video->name }}</a>
             </td>
             <td>
                 <a href="{{ URL::route('admin.content.user.edit', $video->content_id) }}">
@@ -25,7 +25,7 @@
             </td>
             <td>{{ $video->member_name }}</td>
             <td>
-                <a href="{{ URL::route('admin.video.user.show', $video->id) }}" class="btn btn-info">преглед</a>
+                <a href="{{ URL::route('admin.video.edit', $video->id) }}" class="btn btn-info">промяна</a>
             </td>
             <td>
                 {{ Form::open(array('route' => array('admin.video.user.destroy', $video->id), 'method' => 'delete')) }}

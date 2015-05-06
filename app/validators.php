@@ -5,5 +5,5 @@ Validator::extend('alpha_num_spaces', function($attribute, $value) {
 });
 
 Validator::extend('youtube', function($attribute, $value) {
-    return preg_match('/[a-zA-Z0-9_-]{11}/', $value);
+    return preg_match('/\b[a-zA-Z0-9_-]{11}\b/', $value);
 });

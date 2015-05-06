@@ -30,7 +30,7 @@ Route::group(array('namespace' => 'admin'), function() {
             Route::post('admin/category/slug', array('as' => 'admin.category.slug', 'uses' => 'CategoryController@ajaxTitle'));
 
             Route::resource('admin/content', 'ContentController', array('except' => array('show')));
-            Route::resource('admin/video', 'VideoController', array('only' => array('index', 'show', 'destroy')));
+            Route::resource('admin/video', 'VideoController', array('only' => array('index', 'edit', 'update', 'destroy')));
             Route::resource('admin/ban', 'BanController', array('except' => array('edit', 'update', 'show')));
             Route::post('admin/ban/user', array('as' => 'admin.ban.findUser', 'uses' => 'BanController@findUser'));
         });

@@ -5,10 +5,11 @@ class Video extends Eloquent {
     use Validation;
 
     protected $table = 'videos';
-    protected $allowed_extensions = array('mp4');
+    protected $fillable = array('content_id', 'user_id', 'youtube', 'name');
 
     private $rules = array(
         'youtube' => 'required|youtube',
+        'name' => 'alpha_num_spaces|between:0,255'
     );
 
     public function user()
