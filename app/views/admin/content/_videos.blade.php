@@ -11,12 +11,12 @@
     @foreach($videos as $video)
         <tr>
             <td>
-                <a target="_blank" href="{{ URL::route('admin.video.user.show', $video->id) }}" >
+                <a target="_blank" href="{{ URL::route('admin.video.edit', $video->id) }}" >
                     {{ $video->name }}
                 </a>
             </td>
             <td>
-                <a target="_blank" href="{{ URL::route('admin.video.user.show', $video->id) }}" >
+                <a target="_blank" href="{{ URL::route('admin.video.edit', $video->id) }}" >
                     {{ $video->youtube }}
                 </a>
             </td>
