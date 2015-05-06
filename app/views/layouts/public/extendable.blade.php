@@ -2,7 +2,11 @@
 
 @section('main')
     <!-- Left Section  -->
-    <div class="col-md-2">
+    <div type="button" data-target="#toggleLeft" data-toggle="collapse" class="toggle-menu" id="left-toggle">
+        <span>Покажи всички категории</span>
+        <span class="fa fa-bars"></span>
+    </div>
+    <div class="col-md-2 left-menu" id="toggleLeft">
         @if (isset($categories))
             {{ HTML::nav($categories, null, $active) }}
         @endif

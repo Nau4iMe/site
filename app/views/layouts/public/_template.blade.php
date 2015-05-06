@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>{{ isset($page_title) ? $page_title : null }} - Научи ме!</title>
-    <meta name="viewport" content="width=device-width, initial-scale=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ URL::asset('favicon.ico') }}" rel="shortcut icon" type="image/vnd.microsoft.icon" >
 
     <meta property="og:title" content="{{ isset($page_title) ? $page_title : null }}" />
@@ -101,8 +101,7 @@
                                 @endforeach
                             @endif
                             @if (Auth::user())
-                                <li><a href="{{ URL::route('admin') }}" title="администрация">администрация</a></li>
-                                <li><a class="fa fa-user" href="{{ URL::to('/forum/index.php?action=profile') }}" title="SMF Профил"></a></li>
+                                <li><a class="fa fa-user" href="{{ URL::route('admin') }}" title="администрация"></a></li>
                                 <li><a class="fa fa-power-off" href="{{ URL::route('admin.logout') }}" title="Изход"></a></li>
                             @else
                                 <li><a class="fa fa-unlock-alt" href="{{ URL::route('admin') }}" title="Вход"></a></li>
