@@ -7,7 +7,7 @@ class BaseController extends Controller {
     */
     protected $data = array(
         'active' => null,
-        'page_title' => 'Начало',
+        'page_title' => null,
         'page_keywords' => null,
         'page_desc' => null,
         'page_image' => 'http://nau4i.me/i/og_image.png'

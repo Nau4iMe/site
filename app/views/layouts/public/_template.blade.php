@@ -2,7 +2,7 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset="utf-8">
-    <title>{{ isset($page_title) ? $page_title : null }} - Научи ме!</title>
+    <title>{{ isset($page_title) ? $page_title : 'Oops' }} - Научи ме!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ URL::asset('favicon.ico') }}" rel="shortcut icon" type="image/vnd.microsoft.icon" >
 

@@ -36,6 +36,7 @@ class HomeController extends BaseController {
 
         // Prepare data intended to go within the head tags
         $this->data['active'] = 'home';
+        $this->data['page_title'] = 'Видео уроци на български език';
 
         return View::make('home.index', $this->data);
     }
