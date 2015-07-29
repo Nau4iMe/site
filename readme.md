@@ -10,6 +10,7 @@ The source code of nau4i.me - a Bulgarian website for **free** tutorials [nau4i.
 Contributions are more than welcome. Please keep in mind the following things when doing so:
 * The project is still **under development**;
 * The coding style which I tried to follow is [PSR](http://www.php-fig.org/);
+* [Forums (Bulgarian only)](http://nau4i.me/forum/index.php/topic,15810.0.html)
 
 ***
 
@@ -69,3 +70,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 [Bootstrap's website](http://getbootstrap.com/)
 
+***
+
+#### Font Awesome
+
+[Font Awesome's website](http://fortawesome.github.io/Font-Awesome/)
