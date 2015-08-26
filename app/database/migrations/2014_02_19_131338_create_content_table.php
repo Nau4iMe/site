@@ -28,7 +28,7 @@ class CreateContentTable extends Migration {
             $table->string('created_by_alias');
             $table->integer('updated_by')->unsigned()->index();
             $table->timestamps();
-        });     
+        });
     }
 
 

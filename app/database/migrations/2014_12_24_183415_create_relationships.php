@@ -13,6 +13,10 @@ class CreateRelationships extends Migration {
     public function up()
     {
         Schema::table('categories', function($table) {
+            $table->index(array('_lft', '_rgt', 'parent_id'));
+        });
+
+        Schema::table('categories', function($table) {
             $table->foreign('type')->references('type')->on('category_types')->onDelete('cascade')->onUpdate('restrict');
         });
 
@@ -38,21 +42,23 @@ class CreateRelationships extends Migration {
     public function down()
     {
         Schema::table('categories', function($table) {
-            $table->dropIndex('categories_type_foreign');
+            $table->dropForeign('categories_type_foreign');
+        });
+
+        Schema::table('categories', function($table) {
+            $table->dropIndex('categories__lft__rgt_parent_id_index');
         });
 
         Schema::table('content_rating', function($table) {
-            $table->dropIndex('content_rating_content_id_foreign');
+            $table->dropForeign('content_rating_content_id_foreign');
         });
 
         Schema::table('content', function($table) {
-            $table->dropIndex('content_catid_foreign');
+            $table->dropForeign('content_catid_foreign');
         });
-
         Schema::table('videos', function($table) {
-            $table->dropIndex('videos_content_id_foreign');
+            $table->dropForeign('videos_content_id_foreign');
         });
-
     }
 
 }

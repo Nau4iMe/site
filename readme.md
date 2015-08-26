@@ -12,6 +12,15 @@ Contributions are more than welcome. Please keep in mind the following things wh
 * The coding style which I tried to follow is [PSR](http://www.php-fig.org/);
 * [Forums (Bulgarian only)](http://nau4i.me/forum/index.php/topic,15810.0.html)
 
+##### Running the project locally
+Clone the project and enter the clone directory, the issue the following commands:
+
+1. `php artisan migrate:install`
+2. `php artisam migrate`
+3. `php artisan db:seed`
+4. [optional] To roll back from beginning - `php artisan migrate:rollback`
+5. Follow up the errors and fix the wrong configurations :)
+
 ***
 
 ## Dependencies
