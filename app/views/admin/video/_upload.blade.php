@@ -5,14 +5,14 @@
         {{ Form::open(array('route' => 'admin.content.video')) }}
         <div class="col-md-5">
             <label for="title">URL/Заглавие (незадължително)</label>
-            <input id="title" type="text" name="name" required="required" class="form-control" />
+            <input id="title" type="text" name="name" class="form-control" />
             <p class="alert alert-info">
                 В случаи, когато видеото се хоства извън YouTube.
             </p>
         </div>
         <div class="col-md-5">
             <label for="youtube">YouTube ID</label>
-            <input id="youtube" type="text" name="youtube" required="required" class="form-control" />
+            <input id="youtube" type="text" name="youtube" class="form-control" />
             <p class="alert alert-info">
                 Въведете YouTube видео ID:<br/> https://www.youtube.com/watch?v=<strong>WodbdCxrISo</strong>
             </p>
