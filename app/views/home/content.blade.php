@@ -88,10 +88,11 @@
 <hr />
 
 {{ htmlspecialchars_decode(stripslashes($content->introtext)) }}
-{{ HTML::flowplayer(stripslashes(htmlspecialchars_decode($content->fullcontent))) }}
+{{ HTML::strip_flowplayer(stripslashes(htmlspecialchars_decode($content->fullcontent))) }}
 
 @foreach($videos as $video)
     {{ HTML::video($video->youtube) }}
+    {{ HTML::flowplayer($video->name, $video->legacy) }}
 @endforeach
 
 @stop

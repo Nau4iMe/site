@@ -1,38 +1,55 @@
 <?php
 
 /**
- * Generate flowplayer - deprecated
+ * Generate flowplayer - back into business
  *
  * @param string $text
  *
  * @return string
  */
-HTML::macro('flowplayer', function($text) {
-
-    preg_match('/{flowplayer}(.+){\/flowplayer}/', $text, $m);
-    
-    if (!empty($m)) {
-        $data = null;
-        $data .= '<div class="flowplayer-holder">';
-        $data .= '<div class="flowplayer" data-swf="';
-        $data .= URL::asset('packages/flowplayer-5.4.6/flowplayer.swf');
-        $data .= '" data-ratio="0.8">';
-        $data .= '<video>' . PHP_EOL;
-        // fix for flash videos
-        if (mb_substr($m[1], -3, 3) == 'flv') {
-            $data .= '<source type="video/flash" src="${1}">' . PHP_EOL;
-        } else {
-            $data .= '<source type="video/webm" src="${1}">' . PHP_EOL;
-            $data .= '<source type="video/mp4" src="${1}">' . PHP_EOL;
-            $data .= '<source type="video/ogv" src="${1}">' . PHP_EOL;
-        }
-        $data .= '</video>' . PHP_EOL;
-        $data .= '</div>';
-        $data .= '</div>';
-        $text = preg_replace('~{flowplayer}(.*){/flowplayer}~', '', $text);
-
-        $text = preg_replace('/(href="(..\/)?\/?forum\/)/', 'href="http://nau4i.me/forum/', $text);
+HTML::macro('flowplayer', function($name, $legacy = null) {
+    if (!$name || $legacy === 1) {
+        return false;
     }
+
+    $info = pathinfo($name);
+    $video_types = array(
+        'flv'   => 'video/flash',
+        'webm'  => 'video/webm',
+        'mp4'   => 'video/mp4',
+        'ogv'   => 'video/ogv',
+    );
+
+    $data = '<div class="player-holder">';
+    $data .= '<div class="flowplayer" data-swf="';
+    $data .= URL::asset('packages/flowplayer-5.4.6/flowplayer.swf');
+    $data .= '" data-ratio="0.8">';
+    $data .= '<video>' . PHP_EOL;
+    foreach ($video_types as $ext => $type) {
+        $data .= '<source type="' . $type . '" src="' . $info['dirname'] . '/' .
+            $info['filename'] . '.' . $ext . '">' . PHP_EOL;
+    }
+    $data .= '</video>' . PHP_EOL;
+    $data .= '</div>';
+    $data .= '</div>';
+
+    return $data;
+});
+
+/**
+ * Strip deprecated flowplayer tags
+ *
+ * @param string $text
+ *
+ * @return string
+ */
+HTML::macro('strip_flowplayer', function($text) {
+    if (!$text) {
+        return false;
+    }
+
+    $text = preg_replace('~{flowplayer}(.*){/flowplayer}~', '', $text);
+
     return $text;
 });
 
@@ -44,6 +61,9 @@ HTML::macro('flowplayer', function($text) {
  * @return string
  */
 HTML::macro('video', function($id) {
+    if (!$id)
+        return false;
+
     $data = '<div class="player-holder">';
     $data .= '<div class="embed-responsive embed-responsive-16by9">';
     $data .= '<iframe type="text/html" class="embed-responsive-item" autoplay="false" allowfullscreen

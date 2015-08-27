@@ -8,7 +8,7 @@ class Video extends Eloquent {
     protected $fillable = array('content_id', 'user_id', 'youtube', 'name');
 
     private $rules = array(
-        'youtube' => 'required|youtube',
+        'youtube' => 'youtube',
         'name' => 'alpha_num_spaces|between:0,255'
     );
 

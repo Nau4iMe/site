@@ -27,6 +27,7 @@ class VideoController extends \BaseController {
     {
         $user_table = User::getUsersTable();
 
+        // Ugly authentication filter
         if (Session::get('is_admin')) {
             $this->data['videos'] = Video::select(
                 'videos.id',
@@ -57,6 +58,7 @@ class VideoController extends \BaseController {
         $validation = new Video();
         if ($validation->validate(Input::all())) {
             $validation->user_id = Auth::user()->id_member;
+            $validation->name = Input::get('name');
             $validation->youtube = Input::get('youtube');
             $validation->content_id = (int) $id;
             $validation->save();
